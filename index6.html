@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Wishlist</title>
+    <link rel="stylesheet" href="Styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header>
+        <a href="index6.html" class="logo">Fleurissant <span>&#127801;</span></a>
+        <nav class="navbar">
+            <a href="home.php">Home</a>
+            <a href="about.php">About</a>
+            <a href="shop.php">Shop</a>
+            <a href="orders.php">Orders</a>
+            <a href="contact.php">Contact</a>
+        </nav>
+    </header>
+
+    <section class="wishlist">
+        <h1>Your Wishlist</h1>
+        <div class="wishlist-box">
+            <p class="empty">Your Wishlist Is Empty</p>
+        </div>
+        
+        <div class="wishlist-total">
+            <p>Grand Total: <span>Rs.0/-</span></p>
+            <a href="shop.php" class="option-btn">Continue Shopping</a>
+            <a href="wishlist.php?delete_all" class="delete-btn" onclick="return confirm('Delete all from wishlist?');">Delete All Item</a>
+        </div>
+
+        <div class="wishlist-actions">
+            <h2>Add to Wishlist</h2>
+            <input type="text" id="wishlist-item" placeholder="Enter item name">
+            <textarea id="wishlist-notes" rows="4" placeholder="Write notes about your wishlist..."></textarea>
+            <button onclick="addToWishlist()">Add Item</button>
+        </div>
+
+        <ul id="wishlist-items"></ul>
+    </section>
+
+    <script>
+        function addToWishlist() {
+            const itemInput = document.getElementById('wishlist-item');
+            const notesInput = document.getElementById('wishlist-notes');
+            const wishlistContainer = document.getElementById('wishlist-items');
+
+            if (itemInput.value.trim() !== '') {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${itemInput.value}</strong>: ${notesInput.value}`;
+                wishlistContainer.appendChild(li);
+                
+                itemInput.value = '';
+                notesInput.value = '';
+            } else {
+                alert('Please enter an item name.');
+            }
+        }
+    </script>
+
+</body>
+</html>
